@@ -1,15 +1,25 @@
 include main.inc
 
-;//--->
+;--------->
 
 .code             ;-------------------->>;START MY CODE pidr;
 start:
 
 
 
+;------
+push 228
+push 69
 
-push 1488
-CALL konec ;1param
+CALL konec ;2param
+
+;--
+push eax
+CALL Sleep
+
+;------
+push 0
+CALL ExitProcess
 
 end start         ;-------------------->>;STOP TYT END;
 

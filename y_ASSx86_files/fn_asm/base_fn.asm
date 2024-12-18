@@ -4,19 +4,22 @@ includelib C:\masm32\lib\kernel32.lib
 
 .code
 
-konec proc ;[1_param + 8],
+konec proc ;[1_param + 8],[2_param + 12],
 ;*
 push ebp
 mov ebp,esp
-
-push dword ptr[ebp+8] 
-call Sleep
 ;--------------
-push 0
-call ExitProcess
+
+mov eax, dword ptr[ebp+8] 
+add eax, dword ptr[ebp+12]
 
 
-ret 4
 
+
+;--------------
+mov esp,ebp
+pop ebp
+
+ret 8
 ;*
 konec endp
