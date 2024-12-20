@@ -1,25 +1,29 @@
 include main.inc
 
-;--------->
+.data
 
-.code             ;-------------------->>;START MY CODE pidr;
+
+;>>>>>;
+.code
 start:
 
+CALL main
+;---------------
+   push 0
+   CALL ExitProcess           ;END TYT;
+;---------------
+main proc
+
+push 1
+push 9
+CALL konec
+
+;print(eax)
 
 
-;------
-push 228
-push 69
 
-CALL konec ;2param
 
-;--
-push eax
-CALL Sleep
+  ret
+main endp
 
-;------
-push 0
-CALL ExitProcess
-
-end start         ;-------------------->>;STOP TYT END;
-
+end start
