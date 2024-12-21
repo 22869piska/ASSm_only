@@ -1,0 +1,27 @@
+
+param_1 equ dword ptr[ebp+8]           ?? передаваемые параметры функциям
+param_2 equ dword ptr[ebp+12]
+
+---------------------------
+
+!NAME! equ dword ptr[ebp-4]           ?? ЛОКАЛЬНЫЕ ПЕРЕМЕННЫЕ В ФУНКЦИИ(стек)бляоаоаэж
+--------------------------
+
+
+mov ebp,esp
+push ebp
+
+push ebx
+push esi
+push edi
+;----------
+fn_code
+;----------
+pop edi
+pop esi
+pop ebx
+
+mov esp,ebp
+pop ebp
+
+------------------------------------------
