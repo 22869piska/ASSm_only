@@ -16,12 +16,12 @@ main proc
 
 
 
+CALL konec
+
 CALL exploid
 
 ;#--------#
-push 69
-push 288
-CALL konec
+
 ;#--------#
 
 

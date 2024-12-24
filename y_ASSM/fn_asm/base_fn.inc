@@ -1,26 +1,33 @@
 
-;include \masm32\include\kernel32.inc
-;includelib \masm32\lib\kernel32.lib
+.data
 
-.code
+_skok dd ?
 
-konec proc ;[1_param + 8],[2_param + 12],
+.code           ;CODE TYT  ;1= +8 , 2= +12
+
+konec proc 
 ;*
 push ebp
 mov ebp,esp
-;--------------
+;---------
+  
+mov dword ptr[_skok],0
 
-mov eax, dword ptr[ebp+8] 
-add eax, dword ptr[ebp+12]
+@while:
 
-push eax
-CALL Sleep
+ printf("_skok: %i",dword ptr[_skok])
+ printf( "  if  == 10 end\n")
 
+ inc dword ptr[_skok]
+ cmp dword ptr[_skok],10
+ je @go
+ jmp @while
+@go:
 
-;--------------
-mov esp,ebp
-pop ebp
+;-end
+ mov esp,ebp
+ pop ebp
 
-ret 8
+ ret 
 ;*
 konec endp
