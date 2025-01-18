@@ -1,31 +1,23 @@
 include main.inc
+.DATA                   ;zvo
 
-.data
 
 
-;>>>>>;
-.code
+.CODE 
+;{
 start:
-
 CALL main
-;---------------
-   push 0
-   CALL ExitProcess           ;END TYT;
-;---------------
+invoke ExitProcess,0
+;}
 main proc
 
 
-
-CALL konec
-
-CALL exploid
-
-;#--------#
-
-;#--------#
+CALL learn
 
 
-  ret
-main endp
 
+
+;-----------
+ret
+main endp ;MAIN END
 end start

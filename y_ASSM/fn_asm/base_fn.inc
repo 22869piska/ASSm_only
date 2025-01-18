@@ -1,33 +1,84 @@
+.DATA
 
-.data
+;masif dd 10 dup(0) 
 
-_skok dd ?
+masif dd 9,2,3,8,4,3,1,1,7,5  ; масиф сразу типа ну чел пон кроч lown;
 
-.code           ;CODE TYT  ;1= +8 , 2= +12
+data_print proto
 
-konec proc 
-;*
-push ebp
-mov ebp,esp
-;---------
-  
-mov dword ptr[_skok],0
+.CODE  
+;==============>
 
-@while:
+learn proc uses EBX ESI EDI
+;>>>>>>>>
 
- printf("_skok: %i",dword ptr[_skok])
- printf( "  if  == 10 end\n")
+;------
+CALL data_print
+printf("\n \n NXT SORTIROVKA \n \n")
+;->sort
 
- inc dword ptr[_skok]
- cmp dword ptr[_skok],10
- je @go
- jmp @while
-@go:
+LEA EBX,DWORD PTR[masif]
+;REPEAT SORT n<n
+MOV ECX,11
+@TP:
+DEC ECX
 
-;-end
- mov esp,ebp
- pop ebp
+;FOR_1
+MOV EDI,-1
+@for:
+INC EDI
+CMP EDI,9  ;NE DESYAT
+JE @ENDfor
+;--------
 
- ret 
-;*
-konec endp
+MOV EAX,DWORD PTR [EBX + EDI * 4]
+MOV EDX,DWORD PTR [ (EBX+EDI*4) +4 ]
+
+CMP EAX,EDX
+JL @for
+;sortirovka
+MOV DWORD PTR [  EBX+EDI*4 ],EDX
+MOV DWORD PTR [ (EBX+EDI*4) +4],EAX
+
+
+;--------
+JMP @for
+@ENDfor:
+
+;FOR_1 END
+CMP ECX,10
+JECXZ @ENDTP
+JMP @TP
+@ENDTP:
+;TP END ( C<10 )
+
+CALL data_print
+
+;--------
+ret
+learn endp  ;learn END
+
+;{
+data_print proc
+
+ LEA EBX,DWORD PTR[masif]
+ MOV EDI,-1
+ ;---
+ @REPEAT:
+ INC EDI
+ CMP EDI,10
+ JE @RETURN
+
+ MOV ESI,DWORD PTR[EBX+EDI*4]
+
+ ;-PRINT
+ printf("INDEX  %i = ",EDI)
+ printf(" %i \n",ESI)
+
+ JMP @REPEAT
+
+;====
+ @RETURN:
+ ret
+data_print endp
+;}
