@@ -45,12 +45,19 @@ JECXZ - Jump if ECX Register is Zero
 cmd->
 {--------------
 
-movsz eax,ax { 2 старших бита делает знаком  }
+movsx eax,ax { 2 старших бaита делает знаком  }
+movzx eax,ax
 
+  _masif DB "____",13,10
+         db "____",13,10
+         db "____",13,10
+         db "____",13,10
+         db 0
+  _size_masif dd $ - _masif
 
-
-
-
+   LEA EBX,_masif
+    mov ESI,_size_masif    
+    shr ESI,2
 
 
 

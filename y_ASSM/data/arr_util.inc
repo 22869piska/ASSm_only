@@ -28,6 +28,8 @@ arr_print proc uses EBX ESI EDI ,_arr_adr:DWORD ,_arr_size:DWORD
 ;--
  RET
 arr_print endp 
+;______________________
+
 ;--------------------------------------------------------------------------------------------------------
 arr_getall_sum proc uses EBX ESI EDI _arr_ptr:DWORD, _arr_size:DWORD
  
@@ -92,6 +94,7 @@ arr_find_max_valueEx proc uses EBX EDI ESI _arr_ptr:DWORD, _arr_end:DWORD
               MOV EAX,EDX
             JMP @FOR
            ;*
+           
  ;----
  @@RET:
  RET
